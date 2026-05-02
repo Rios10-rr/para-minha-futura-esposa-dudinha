@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Romântica de Rios para Eduarda  ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }                                       
+
+        h1 {
+            font-size: 3.5em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            font-size: 1.8em;
+            color: #fff;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .heart {
+            display: inline-block;
+            font-size: 1.2em;
+            animation: heartBeat 0.6s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+        }
+
+        .falling-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart-fall {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 6s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background-color: #ff1744;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background-color: #ff5583;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="falling-hearts" id="fallingHearts"></div>
+
+    <div class="container">
+        <h1>
+            <span class="heart">❤️</span>
+        </h1>
+        
+        <div class="message">
+            <p>Você é essa pessoa que faz</p>
+            <p>cada dia valer a pena! <span class="heart">💕</span></p>
+            <p style="margin-top: 20px; font-size: 1.4em;">
+                Você me faz feliz de maneiras que nem sei explicar... meu bezinho Maria Eduarda
+                
+            </p>
+        </div>
+
+        <button onclick="createHeart()">Clique para mais corações 💕</button>
+    </div>
+
+    <script>
+        // Criar corações caindo
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-fall';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            document.getElementById('fallingHearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 9000);
+        }
+
+        // Criar corações automaticamente
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createHeart();
+            }
+        }, 800);
+
+        // Efeito de clique com confete de corações
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                for (let i = 0; i < 3; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-fall';
+                    heart.textContent = '❤️';
+                    heart.style.left = e.clientX + 'px';
+                    heart.style.top = e.clientY + 'px';
+                    document.getElementById('fallingHearts').appendChild(heart);
+                    setTimeout(() => heart.remove(), 6000);
+                }
+            }
+        });
+
+        console.log("💕 Página romântica carregada com sucesso! 💕");
+    </script>
+</body>
+</html>
